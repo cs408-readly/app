@@ -10,16 +10,22 @@
         <!--  -->
         <!-- <sidebar></sidebar> -->
         <!--  -->
-        <ol id="list"></ol>
+        <div id=container>
+	        <ul id="list"></ul>
 
-        <button type="button" onclick="getNews()">Get more news!</button>
-
+	        <button type="button" onclick="getNews()">Get more news!</button>	
+        </div>
         <script src="https://cdn.jsdelivr.net/riot/3.1/riot.min.js"></script>
 
         <!-- include pre-compiled tags (normal javascript) -->
         <script src="./dist/news-article.js"></script>
 
         <!-- mount normally -->
+        <style type="text/css">
+        	#container {
+        		text-align: center;
+        	}
+        </style>
         <script>
 
         riot.mount('*')
