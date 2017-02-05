@@ -1,5 +1,5 @@
 *.pyc
 services/recommendations/__pyca*
-app/.DS_Store
+*DS_Store
 app/node_modules
 app/public/dist
