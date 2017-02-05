@@ -32,12 +32,7 @@
 
         function getNews() {
 
-            var articles = [
-                { title: "Aviral" },
-                { title: "Nihanshu" },
-                { title: "Sidhant" },
-                { title: "Sidhant" }
-            ];
+            var articles = getNewsArticles();
 
             articles.forEach(function(article) {
                 var list = document.getElementById('list');
@@ -46,9 +41,18 @@
 
                 var tag = document.createElement('news-article');
                 li.appendChild(tag)
-                riot.mount(tag, 'news-article', {message: article.title});
+                riot.mount(tag, 'news-article', {message: article.title, id: article.id});
             });
 
+        }
+
+        function getNewsArticles() {
+            return [
+                { title: "Aviral", id: 1},
+                { title: "Nihanshu", id: 2 },
+                { title: "Sidhant", id: 3 },
+                { title: "Sidhant", id: 4 }
+            ];
         }
 
         getNews();
