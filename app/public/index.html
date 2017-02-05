@@ -10,7 +10,7 @@
         <!--  -->
         <!-- <sidebar></sidebar> -->
         <!--  -->
-        <ol id="list"></ol>
+        <ul id="list"></ul>
 
         <button type="button" onclick="getNews()">Get more news!</button>
 
@@ -26,12 +26,7 @@
 
         function getNews() {
 
-            var articles = [
-                { title: "Aviral" },
-                { title: "Nihanshu" },
-                { title: "Sidhant" },
-                { title: "Sidhant" }
-            ];
+            var articles = getNewsArticles();
 
             articles.forEach(function(article) {
                 var list = document.getElementById('list');
@@ -43,6 +38,15 @@
                 riot.mount(tag, 'news-article', {message: article.title});
             });
 
+        }
+
+        function getNewsArticles() {
+            return [
+                { title: "Aviral", id: 1},
+                { title: "Nihanshu", id: 2 },
+                { title: "Sidhant", id: 3 },
+                { title: "Sidhant", id: 4 }
+            ];
         }
 
         getNews();
