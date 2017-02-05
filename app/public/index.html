@@ -1,19 +1,52 @@
 <!doctype html>
 <html lang="en">
-<head>
-    <meta charset="utf-8">
-    <title>Hello World</title>
-</head>
-<body>
-    <!-- mount point -->
-    <hello-world></hello-world>
+    <head>
+        <meta charset="utf-8">
+        <title>Hello World</title>
+    </head>
+    <body>
 
-    <script src="https://cdn.jsdelivr.net/riot/3.1/riot.min.js"></script>
+        <!-- <header></header> -->
+        <!--  -->
+        <!-- <sidebar></sidebar> -->
+        <!--  -->
+        <ol id="list"></ol>
 
-    <!-- include pre-compiled tags (normal javascript) -->
-    <script src="./dist/hello-world.js"></script>
+        <button type="button" onclick="getNews()">Get more news!</button>
 
-    <!-- mount normally -->
-    <script> riot.mount('*') </script>
-</body>
+        <script src="https://cdn.jsdelivr.net/riot/3.1/riot.min.js"></script>
+
+        <!-- include pre-compiled tags (normal javascript) -->
+        <script src="./dist/news-article.js"></script>
+
+        <!-- mount normally -->
+        <script>
+
+        riot.mount('*')
+
+        function getNews() {
+
+            var articles = [
+                { title: "Aviral" },
+                { title: "Nihanshu" },
+                { title: "Sidhant" },
+                { title: "Sidhant" }
+            ];
+
+            articles.forEach(function(article) {
+                var list = document.getElementById('list');
+                var li = document.createElement('li');
+                list.append(li);
+
+                var tag = document.createElement('news-article');
+                li.appendChild(tag)
+                riot.mount(tag, 'news-article', {message: article.title});
+            });
+
+        }
+
+        getNews();
+
+        </script>
+    </body>
 </html>
