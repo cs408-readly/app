@@ -2,19 +2,19 @@
 
     <h1>{opts.message}</h1>
 
-    <button type="button" onclick="upvote()">Upvote</button>
-    <button type="button" onclick="downvote()">Downvote</button>
-    <button type="button" onclick="comment()">Comment</button>
+    <button type="button" onclick={upvote}>Upvote</button>
+    <button type="button" onclick={downvote}>Downvote</button>
+    <button type="button" onclick={comment}>Comment</button>
 
     <script>
-    function upvote() {
-        console.log('Upvoted article with id:' + opts.id);
+    upvote() {
+        console.log('Upvoted article with id:' + this.opts.id);
     }
-    function downvote() {
-        console.log('Downvoted article with id:' + opts.id);
+    downvote() {
+        console.log('Downvoted article with id:' + this.opts.id);
     }
-    function upvote() {
-        console.log('Commented on  article with id:' + opts.id);
+    comment() {
+        console.log('Commented on  article with id:' + this.opts.id);
     }
     </script>
 
