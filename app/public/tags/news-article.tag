@@ -8,11 +8,12 @@
     </div>
     <style type="text/css">
         #post {
+            margin-top: 40px;
+            margin-bottom: 40px;
             text-align: center;
             font-size: 15px;
             color: white;
             background-color: #4d6c9e;
-            margin-bottom: 40px;
             border-radius: 10px;
             padding-top: 2px;
             padding-bottom: 10px;
