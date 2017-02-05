@@ -6,28 +6,28 @@
     </head>
     <body>
 
-        <!-- <header></header> -->
-        <!--  -->
+        <header></header>
+
         <!-- <sidebar></sidebar> -->
         <!--  -->
         <div id=container>
-	        <ul id="list"></ul>
+            <ul id="list"></ul>
 
-	        <button type="button" onclick="getNews()">Get more news!</button>	
+            <button type="button" onclick="getNews()">Get more news!</button>
         </div>
+
         <script src="https://cdn.jsdelivr.net/riot/3.1/riot.min.js"></script>
 
-        <!-- include pre-compiled tags (normal javascript) -->
         <script src="./dist/news-article.js"></script>
+        <script src="./dist/header.js"></script>
 
-        <!-- mount normally -->
         <style type="text/css">
-        	#container {
-        		text-align: center;
-        	}
+        #container {
+            text-align: center;
+        }
         </style>
-        <script>
 
+        <script>
         riot.mount('*')
 
         function getNews() {
@@ -56,7 +56,6 @@
         }
 
         getNews();
-
         </script>
     </body>
 </html>
