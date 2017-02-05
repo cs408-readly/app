@@ -1,5 +1,5 @@
 <news-article>
-    <div>
+    <div id="post">
         <h1>{opts.message}</h1>
 
         <button type="button" onclick={upvote}>Upvote</button>
@@ -7,18 +7,17 @@
         <button type="button" onclick={comment}>Comment</button>
     </div>
     <style type="text/css">
-		div {
-			text-align: center;
-			font-size: 15px;
-			color: white;
-			background-color: #4d6c9e;
-			width: 500px;
-			margin-bottom: 40px;
-			border-radius: 10px;
+        #post {
+            text-align: center;
+            font-size: 15px;
+            color: white;
+            background-color: #4d6c9e;
+            margin-bottom: 40px;
+            border-radius: 10px;
             padding-top: 2px;
             padding-bottom: 10px;
-		}
-	</style>
+        }
+    </style>
 
     <script>
     upvote() {
