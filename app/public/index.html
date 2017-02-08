@@ -1,39 +1,60 @@
 <!doctype html>
 <html lang="en">
     <head>
+
         <meta charset="utf-8">
+
         <title>Hello World</title>
+
+        <!-- Stylesheets -->
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+        <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+        <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+
+        <!-- Riot import -->
+        <script src="https://cdn.jsdelivr.net/riot/3.1/riot.min.js"></script>
+
+        <!-- Riot tags import -->
+        <script src="./dist/news-article.js"></script>
+        <script src="./dist/header.js"></script>
+        <script src="./dist/sidebar.js"></script>
+
     </head>
-    <body id="body">
+
+    <body>
 
         <header></header>
 
-        <!-- <sidebar></sidebar> -->
-        <!--  -->
+
         <div id=container>
+            <sidebar></sidebar>
             <ul id="list"></ul>
 
-
-            <button type="button" onclick="getNews()">Get more news!</button>   
+            <button type="button" onclick="getNews()">Get more news!</button>
         </div>
 
-        <script src="https://cdn.jsdelivr.net/riot/3.1/riot.min.js"></script>
-
-        <script src="./dist/news-article.js"></script>
-        <script src="./dist/header.js"></script>
 
         <style type="text/css">
-            #container {
-               text-align: center;
+
+            sidebar {
+                float: left;
             }
+
+            #container {
+                margin-top: 20px;
+                text-align: center;
+            }
+
             #list {
                 margin: auto;
-                width: 500px;
+                width: 600px;
                 list-style: none;
             }
-            #body {
+
+            body {
                 margin: 0px;
             }
+
         </style>
 
         <script>
@@ -50,18 +71,16 @@
 
                 var tag = document.createElement('news-article');
                 li.appendChild(tag)
-                riot.mount(tag, 'news-article', {message: article.title, id: article.id});
+                    riot.mount(tag, 'news-article', {message: article.title, id: 1, link: article.url, content: article.description});
             });
 
         }
 
         function getNewsArticles() {
-            return [
-                { title: "Aviral", id: 1},
-                { title: "Nihanshu", id: 2 },
-                { title: "Sidhant", id: 3 },
-                { title: "Sidhant", id: 4 }
-            ];
+            var xmlHttp = new XMLHttpRequest();
+            xmlHttp.open("GET", "http://localhost:3000/trending", false);
+            xmlHttp.send( null );
+            return JSON.parse(xmlHttp.responseText).articles;
         }
 
         getNews();
