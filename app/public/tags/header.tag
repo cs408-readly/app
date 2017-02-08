@@ -6,8 +6,8 @@
 
     <style type="text/css">
         header {
-            width: fill;
-            padding-top: 5px;
+            position:fixed;
+            width: 100%;
             padding-bottom: 5px;
             padding-left: 10px;
             padding-right: 10px;

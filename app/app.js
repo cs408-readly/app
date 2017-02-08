@@ -8,6 +8,7 @@ var morgan              = require('morgan');
 var flash               = require('connect-flash');
 var cookieParser        = require('cookie-parser');
 var session             = require('express-session');
+var request             = require('request');
 
 
 // remove if not using mysql. If just sql add sql db setup statement
