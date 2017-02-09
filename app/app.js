@@ -26,11 +26,19 @@ require('./config/passport')(passport);
 
 app.use(morgan('dev'));
 app.use(cookieParser());
-app.use(bodyParser());
+
+app.use(bodyParser.urlencoded({
+    extended: true
+}));
+app.use(bodyParser.json());
 
 app.use(express.static('public'));
 
-app.use(session({ secret: 'secret' }));
+app.use(session({ 
+    secret: 'secret',
+    resave: true,
+    saveUninitialized: false 
+}));
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
