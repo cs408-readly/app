@@ -1,6 +1,6 @@
 <sidebar>
 
-    <p></b>News Sources</b><p>
+    <p id="title"></b>News Sources</b><p>
 
     <ul id="news-list">
         <li>Techcruch</li>
@@ -12,9 +12,26 @@
     <style>
 
         sidebar {
-            padding-top:50px;
-            margin-left:120px;
+            margin-top:20px;
+            margin-left:200px;
             float:left;
+        }
+        #title {
+            border-bottom: 1px solid #e0e7ed;
+        }
+        #news-list {
+            margin: 0;
+            overflow: hidden;
+
+        }
+        #news-list li {
+            text-align: left;
+            padding: 2px;
+            margin-bottom: 4px;
+            color: #666;
+        }
+        #news-list li:hover {
+            color: #5575a8;
         }
 
     </style>
