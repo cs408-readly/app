@@ -4,8 +4,9 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "parallelshell \"nodemon app.js\" \"riot -w public/tags public/dist\" \"riot public/tags public/dist\""
+    "test": "mocha -R spec tests/",
+    "start": "parallelshell \"nodemon app.js\" \"riot -w public/tags public/dist\" \"riot public/tags public/dist\"",
+    "precommit": "npm test"
   },
   "author": "",
   "license": "ISC",
@@ -16,21 +17,24 @@
     "sequelize": "^3.30.1"
   },
   "devDependencies": {
+    "bcrypt-nodejs": "0.0.3",
+    "body-parser": "^1.15.2",
+    "connect-flash": "^0.1.1",
+    "cookie-parser": "^1.4.3",
+    "ejs": "^2.5.2",
+    "express-session": "^1.14.2",
+    "husky": "^0.13.1",
+    "method-override": "^2.3.7",
+    "mocha": "^3.2.0",
+    "mongodb": "^2.2.11",
+    "mongoose": "^4.7.0",
+    "morgan": "^1.7.0",
     "nodemon": "^1.11.0",
     "parallelshell": "^2.0.0",
     "passport": "^0.3.2",
     "passport-facebook": "^2.1.1",
+    "passport-local": "^1.0.0",
     "sequelize": "^3.30.1",
-    "bcrypt-nodejs": "0.0.3",
-    "body-parser": "^1.15.2",
-    "cookie-parser": "^1.4.3",
-    "connect-flash": "^0.1.1",
-    "express-session": "^1.14.2",
-    "method-override": "^2.3.7",
-    "ejs": "^2.5.2",
-    "mongodb": "^2.2.11",
-    "mongoose": "^4.7.0",
-    "morgan": "^1.7.0",
-    "passport-local": "^1.0.0"
+    "supertest": "^3.0.0"
   }
 }

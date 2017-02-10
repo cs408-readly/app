@@ -35,13 +35,6 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
 
-
-require('./routes/routes.js')(app, passport);
-
-app.listen(3000, function () {
-    console.log('app listening on port 3000!');
-})
-
 app.get('/trending', function(req, res) {
 
     request.get('https://newsapi.org/v1/articles?source=techcrunch&sortBy=top&apiKey=e30f46dbdaa645558d009af5b0ede4ca', function(err, response, body) {
@@ -49,4 +42,11 @@ app.get('/trending', function(req, res) {
     });
 
 });
+
+require('./routes/routes.js')(app, passport);
+
+module.exports = app.listen(3000, function () {
+    console.log('app listening on port 3000!');
+})
+
 
