@@ -24,25 +24,26 @@ app.set('view engine', 'ejs'); //remove this later. just for login testing purpo
 
 require('./config/passport')(passport);
 
+// Middleware
 app.use(morgan('dev'));
 app.use(cookieParser());
 
-app.use(bodyParser.urlencoded({
-    extended: true
-}));
+app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 
 app.use(express.static('public'));
 
-app.use(session({ 
+app.use(session({
     secret: 'secret',
     resave: true,
-    saveUninitialized: false 
+    saveUninitialized: false
 }));
+
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
 
+// Routes
 app.get('/trending', function(req, res) {
 
     request.get('https://newsapi.org/v1/articles?source=techcrunch&sortBy=top&apiKey=e30f46dbdaa645558d009af5b0ede4ca', function(err, response, body) {
