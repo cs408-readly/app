@@ -47,7 +47,7 @@ app.use(flash());
 app.get('/trending', function(req, res) {
 
     request.get('https://newsapi.org/v1/articles?source=techcrunch&sortBy=top&apiKey=e30f46dbdaa645558d009af5b0ede4ca', function(err, response, body) {
-        res.send(body).status(200);
+        res.json(body).status(200);
     });
 
 });
