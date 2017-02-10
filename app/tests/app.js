@@ -1,21 +1,13 @@
 var chai = require('chai');
 var chaiHttp = require('chai-http');
 var should = chai.should();
+var server = require('../app.js');
 
 chai.use(chaiHttp);
 
 process.env.NODE_ENV = 'test';
 
-
 describe('Basic functionality', function() {
-    var server;
-    beforeEach(function() {
-        server = require('../app.js');
-    });
-
-    afterEach(function() {
-        server.close();
-    });
 
     it('responds to /login', function(done) {
         chai.request(server)

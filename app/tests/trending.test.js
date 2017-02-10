@@ -3,6 +3,8 @@ var chaiHttp = require('chai-http');
 var should = chai.should();
 var server = require('../app.js');
 
+process.env.NODE_ENV = 'test';
+
 chai.use(chaiHttp);
 
 describe('Trending functionality', function(){
@@ -12,7 +14,7 @@ describe('Trending functionality', function(){
         chai.request(server)
             .get('/trending')
             .end(function(err, res) {
-                JSON.parse(res.body).should.be.a('object');
+                JSON.parse(res.text).should.be.a('object');
                 done();
             });
     });
@@ -21,7 +23,7 @@ describe('Trending functionality', function(){
         chai.request(server)
             .get('/trending')
             .end(function(err, res) {
-                var body = JSON.parse(res.body);
+                var body = JSON.parse(res.text);
 
                 body.should.have.property('articles');
                 body.articles.should.be.a('array');
@@ -33,7 +35,7 @@ describe('Trending functionality', function(){
         chai.request(server)
             .get('/trending')
             .end(function(err, res) {
-                var array = JSON.parse(res.body).articles;
+                var array = JSON.parse(res.text).articles;
 
                 array.forEach(function(article) {
                     article.should.have.property('url');
