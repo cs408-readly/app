@@ -1,13 +1,14 @@
 <news-article>
-    <div id="post" onclick={goToNews}>
-        <h5><b>{opts.message}</b></h5>
+    <div id="post">
+        <h5 onclick><b>{opts.message}</b></h5>
 
-        <p>{opts.content}</p>
+        <p onclick={goToNews}>{opts.content}</p>
 
         <button type="button" onclick={upvote}>Upvote</button>
         <button type="button" onclick={downvote}>Downvote</button>
         <button type="button" onclick={comment}>Comment</button>
-    </div>
+        <input type="checkbox" onclick={save}>Save</input>
+        </div>
     <style type="text/css">
 
         h5,p {
@@ -41,5 +42,10 @@
     comment() {
         console.log('Commented on  article with id:' + this.opts.id);
     }
+    save(){
+        console.log('article link to be saved for later: ' + this.opts.link);
+    
+    }
+
     </script>
 </news-article>
