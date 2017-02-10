@@ -1,4 +1,5 @@
 var request = require('supertest');
+process.env.NODE_ENV = 'test';
 describe('loading express', function() {
     var server;
     beforeEach(function() {

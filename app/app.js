@@ -25,7 +25,7 @@ app.set('view engine', 'ejs'); //remove this later. just for login testing purpo
 require('./config/passport')(passport);
 
 // Middleware
-app.use(morgan('dev'));
+if (process.env.NODE_ENV != 'test') app.use(morgan('dev'));
 app.use(cookieParser());
 
 app.use(bodyParser.urlencoded({extended: true}));
@@ -54,8 +54,6 @@ app.get('/trending', function(req, res) {
 
 require('./routes/routes.js')(app, passport);
 
-module.exports = app.listen(3000, function () {
-    console.log('app listening on port 3000!');
-})
+module.exports = app.listen(3000);
 
 
