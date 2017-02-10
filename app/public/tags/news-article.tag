@@ -1,13 +1,14 @@
 <news-article>
-    <div id="post" onclick={goToNews}>
-        <h5><b>{opts.message}</b></h5>
+    <div id="post">
+        <h5 onclick={goToNews}><b>{opts.message}</b></h5>
 
-        <p>{opts.content}</p>
+        <p onclick={goToNews}>{opts.content}</p>
 
-        <button id="upvote"type="button" onclick={upvote}>Upvote</button>
-        <button id="downvote"type="button" onclick={downvote}>Downvote</button>
-        <button id="comment"type="button" onclick={comment}>Comment</button>
-    </div>
+        <button type="button" onclick={upvote}>Upvote</button>
+        <button type="button" onclick={downvote}>Downvote</button>
+        <button type="button" onclick={comment}>Comment</button>
+        <input type="checkbox" onclick={save}>Save</input>
+        </div>
     <style type="text/css">
 
         h5,p {
@@ -78,5 +79,10 @@
     comment() {
         console.log('Commented on  article with id:' + this.opts.id);
     }
+    save(){
+        console.log('article link to be saved for later: ' + this.opts.link);
+    
+    }
+
     </script>
 </news-article>
