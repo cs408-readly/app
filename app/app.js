@@ -10,6 +10,8 @@ var cookieParser        = require('cookie-parser');
 var session             = require('express-session');
 var request             = require('request');
 
+var port = (process.env.NODE_ENV === 'test') ? 3001 : (3000 || process.env.PORT);
+
 
 // remove if not using mysql. If just sql add sql db setup statement
 var mysql       = require('mysql');
@@ -46,14 +48,30 @@ app.use(flash());
 // Routes
 app.get('/trending', function(req, res) {
 
-    request.get('https://newsapi.org/v1/articles?source=techcrunch&sortBy=top&apiKey=e30f46dbdaa645558d009af5b0ede4ca', function(err, response, body) {
-        res.send(body).status(200);
+    var newsSources = ['techcrunch', 'cnn', 'bloomberg', 'time'];
+
+    var my_articles = [];
+    newsSources.forEach(function(newsSource) {
+
+        var url = 'https://newsapi.org/v1/articles?source='+newsSource+'&sortBy=top&apiKey=e30f46dbdaa645558d009af5b0ede4ca';
+
+        request.get(url, function(err, response, body) {
+            JSON.parse(body).articles.forEach(function(article) {
+
+                my_articles.push(article);
+
+            });
+
+            if (newsSource === newsSources[newsSources.length - 1]) {
+                res.send({articles: my_articles}).status(200);
+            }
+        });
     });
 
 });
 
 require('./routes/routes.js')(app, passport);
 
-module.exports = app.listen(3000);
+module.exports = app.listen(port);
 
 

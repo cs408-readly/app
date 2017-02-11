@@ -3,3 +3,4 @@ services/recommendations/__pyca*
 *DS_Store
 app/node_modules
 app/public/dist
+app/npm-debug.log
