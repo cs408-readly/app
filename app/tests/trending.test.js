@@ -1,9 +1,9 @@
 var chai = require('chai');
 var chaiHttp = require('chai-http');
 var should = chai.should();
-var server = require('../app.js');
 
 process.env.NODE_ENV = 'test';
+var server = require('../app.js');
 
 chai.use(chaiHttp);
 
@@ -50,7 +50,19 @@ describe('Trending functionality', function(){
 
                 done();
             });
+    });
 
+    it('test authentication', function(done) {
+        chai.request(server)
+            .post('/login')
+            .send({
+                'local.email': 'nihanshupurohit@gmail.com',
+                'local.password': '123456789'
+            })
+            .end(function(err, res) {
+                res.should.have.status(200);
+                done();
+            });
     });
 
 });

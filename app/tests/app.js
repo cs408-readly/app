@@ -1,11 +1,11 @@
 var chai = require('chai');
-var chaiHttp = require('chai-http');
 var should = chai.should();
-var server = require('../app.js');
-
+var chaiHttp = require('chai-http');
 chai.use(chaiHttp);
 
 process.env.NODE_ENV = 'test';
+
+var server = require('../app.js');
 
 describe('Basic functionality', function() {
 
