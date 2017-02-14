@@ -10,7 +10,7 @@ var cookieParser        = require('cookie-parser');
 var session             = require('express-session');
 var request             = require('request');
 
-var port = (process.env.NODE_ENV === 'test') ? 3001 : (3000 || process.env.PORT);
+var port = (process.env.NODE_ENV === 'test') ? 3001 : (process.env.PORT || 3000);
 
 
 // remove if not using mysql. If just sql add sql db setup statement
