@@ -1,6 +1,4 @@
-*.pyc
-services/recommendations/__pyca*
 *DS_Store
-app/node_modules
-app/public/dist
-app/npm-debug.log
+node_modules
+public/dist
+npm-debug.log
