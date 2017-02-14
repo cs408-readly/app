@@ -6,7 +6,7 @@
   "scripts": {
     "test": "mocha -R spec tests/",
     "dev": "parallelshell \"nodemon app.js\" \"riot -w public/tags public/dist\" \"riot public/tags public/dist\"",
-    "start": "node app.js",
+    "start": "riot public/tags public/dist; node app.js",
     "precommit": "npm test"
   },
   "author": "",
