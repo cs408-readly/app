@@ -6,9 +6,10 @@
 
         <p onclick={goToNews}>{opts.content}</p>
 
-        <button id="upvote" type="button" onclick={upvote}>Upvote</button>
+        <button id="upvote" type="button" onclick={upvote}> Upvote</button>
         <button id="downvote" type="button" onclick={downvote}>Downvote</button>
         <button id="comment" type="button" onclick={comment}>Comment</button>
+        <button id="favorite" type="button" onclick={favorite}>Favorite</button>
         <input type="checkbox" onclick={save}>Save</input>
 
     </div>
@@ -73,6 +74,17 @@
             font: 16px;
             border-radius: 10px;
         }
+        #favorite {
+            background-color: #e7e7e7;
+            color: black;
+            border: none;
+            padding: 8px 16px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font: 16px;
+            border-radius: 10px;
+        }
 
     </style>
 
@@ -92,6 +104,10 @@
 
     comment() {
         console.log('Commented on  article with id:' + this.opts.id);
+    }
+    
+    favorite() {
+        console.log('Favorited an article with id:'+this.opts.id);
     }
 
     save(){
