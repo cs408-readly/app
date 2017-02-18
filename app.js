@@ -22,6 +22,7 @@ var sequelize   = new Sequelize('mysql://sql9156962:7iPcSpiILT@sql9.freemysqlhos
 var mongoose = require('mongoose');
 var configDB = require('./config/database.js');
 mongoose.connect(configDB.url);
+app.engine('html', require('ejs').renderFile);
 app.set('view engine', 'ejs'); //remove this later. just for login testing purpose
 
 require('./config/passport')(passport);
