@@ -47,31 +47,9 @@ app.use(passport.session());
 app.use(flash());
 
 // Routes
-app.get('/trending', function(req, res) {
 
-    var newsSources = ['techcrunch', 'cnn', 'bloomberg', 'time'];
-
-    var my_articles = [];
-    newsSources.forEach(function(newsSource) {
-
-        var url = 'https://newsapi.org/v1/articles?source='+newsSource+'&sortBy=top&apiKey=e30f46dbdaa645558d009af5b0ede4ca';
-
-        request.get(url, function(err, response, body) {
-            JSON.parse(body).articles.forEach(function(article) {
-
-                my_articles.push(article);
-
-            });
-
-            if (newsSource === newsSources[newsSources.length - 1]) {
-                res.send({articles: my_articles}).status(200);
-            }
-        });
-    });
-
-});
-
-require('./routes/routes.js')(app, passport);
+require('./routes/auth.js')(app, passport);
+require('./routes/trending.js')(app);
 
 module.exports = app.listen(port);
 
