@@ -48,7 +48,8 @@ describe('Trending functionality', function(){
                         article.should.have.property('title');
                         article.title.should.be.a('string');
                     } catch (e) {
-                        console.log(article);
+                        throw '\n\n' + article.source + ' is not returning a valid article\n';
+                        throw e;
                     }
                 });
 
