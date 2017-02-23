@@ -26,20 +26,6 @@ var userSchema = new Schema({
 
 });
 
-var articleSchema = new Schema({
-    Upvote:     Number,
-    Downvote:   Number,
-    Save:       Boolean,
-    Favorite:   Boolean
-});
-module.exports = mongoose.model('Article', articleSchema);
-
-var NewsSourceSchema = new Schema ({
-    name    : String,
-    count   : Number
-});
-module.exports = mongoose.model('NewsSource', NewsSourceSchema);
-
 userSchema.methods.generateHash = function(password) {
     return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
 };
