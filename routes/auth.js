@@ -2,14 +2,13 @@ var User = require('../models/user');
 var path = require('path');
 module.exports = function(app, passport) {
 
-    app.get('/', function(req, res) {
-        res.render('index.ejs'); // Replace it with the riot index file
+    app.get('/', isLoggedIn, function(req, res) {
+        res.sendFile(path.join(__dirname+'/../public/index.html'));
     });
 
     app.get('/login', function(req, res) {
 
         res.sendFile(path.join(__dirname+'/../public/login.html'));
-        //res.render('login.ejs', { message: req.flash('loginMessage') }); //Replace it with riot login page
     });
 
     app.post('/login', passport.authenticate('local-login', {
@@ -26,7 +25,7 @@ module.exports = function(app, passport) {
             if (user) 
             {
                 console.log(user.local.email);
-                res.redirect('/home');
+                res.redirect('/');
             } 
 
             else 
@@ -37,24 +36,17 @@ module.exports = function(app, passport) {
 
       });
 
+    app.post('/signup', passport.authenticate('local-signup', {failureRedirect: '/login'}), function(req, res) {
+      res.redirect('/');
+    });
+
     app.get('/signup', function(req, res) {
         res.render('signup.ejs', { message: req.flash('signupMessage') });
     });
 
-    app.post('/signup', passport.authenticate('local-signup', {failureRedirect: '/signup'}), function(req, res) {
-      console.log(req.body.email);
-      res.redirect('/home');
-    });
-
-    app.get('/home', isLoggedIn, function(req, res) {
-       res.render('home.ejs', {
-           user : req.user
-       });
-    });
-
     app.get('/logout', function(req, res) {
         req.logout();
-        res.redirect('/');
+        res.redirect('/login');
     });
 };
 
@@ -65,7 +57,7 @@ function isLoggedIn(req, res, next) {
         return next();
 
     // if they aren't redirect them to the home page
-    res.redirect('/');
+    res.redirect('/login');
 }
 
 
