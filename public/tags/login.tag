@@ -1,49 +1,49 @@
 <login id="login">
     <!-- LOGIN FORM -->
+    Login
+    <br>
     <form action="/login" method="post" id="login">
         <div class="form-group">
-            <label>Email</label>
-            <input type="text" name="email">
+            <input placeholder="Email" type="text" name="email">
         </div>
         <div class="form-group">
-            <label>Password</label>
-            <input type="password" name="password">
+            <input placeholder="Password" type="password" name="password">
         </div>
 
-        <button type="submit">Login</button>
+        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored">
+  Login
+</button>
     </form>
     <style type="text/css">
-        #login {
-
-        }
         .form-group {
             padding: 2px;
         }
     </style>
 </login>
 
-<signup id="signup">
+<signup id="sign">
 <!-- LOGIN FORM -->
-
+    Sign Up
+    <br>
     <form action="/signup" method="post" if={!social}>
+
         <div class="form-group">
-            <label>First Name:</label>
-            <input type="text" class="form-control" name="firstName">
+            <input type="text" placeholder="First Name" class="form-control" name="firstName">
         </div>
         <div class="form-group">
-            <label>Last Name:</label>
-            <input type="text" class="form-control" name="lastName">
+            <input type="text" placeholder="Last Name" class="form-control" name="lastName">
         </div>
         <div class="form-group">
-            <label>Email</label>
-            <input type="text" name="email">
+            <input type="text" placeholder="Email" name="email">
         </div>
         <div class="form-group">
-            <label>Password</label>
-            <input type="password" name="password">
+            <input type="password" placeholder="Password" name="password">
         </div>
 
-        <button type="submit">Signup</button>
+        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+  SignUp
+</button>
+
     </form>
 
     <div id="social" if={social}>
@@ -61,28 +61,43 @@
 <auth id="auth">
     <div id="container">
         <div id="card">
-            <signup></signup>
-            <login></login>
+            <signup class="flexitem"></signup>
+            <login class = "flexitem"></login>
         </div>
     </div>
     <style type="text/css">
         #container {
-            width:300px;
-            position:absolute;
-            left:50%;
-            top:50%;
-            margin:-100px 0 0 -150px;
+            text-align: center;
         }
         #card {
-            padding-top: 5px;
-            padding-bottom: 5px;
+            margin-right: auto;
+            margin-left: auto;
+            margin-top: 150px;
+            width: 50%;
+            background-color: white;
+            color: black;
+            resize: both;
+            overflow: auto;
+            display: flex;
+            padding-top: 10px;
+            padding-bottom: 10px;
             padding-left: 20px;
             padding-right: 20px;
-            display: flex;
             text-align: center;
-            background-color: blue;
-            border: 2px solid red;
+            border: 1px solid #f1eff4;
             border-radius: 5px;
+
+        }
+        input {
+            width: 70%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            border: none;
+            border-radius: 4px;
+            background-color: #e1e5ed;
+        }
+        .flexitem {
+            width: 100%;
 
         }
     </style>
