@@ -12,29 +12,10 @@ module.exports = function(app, passport) {
     });
 
     app.post('/login', passport.authenticate('local-login', {
+        successRedirect: '/',
         failureRedirect: '/login',
-        failureFlash: true}), function(req, res) {
-      console.log(req.body.email);
-
-      User.findOne({ 'local.email' :  req.body.email }, function(err, user) {
-            if (err) 
-            {
-                return done(err);
-            }
-
-            if (user) 
-            {
-                console.log(user.local.email);
-                res.redirect('/');
-            } 
-
-            else 
-            {
-                res.redirect('/login');
-            }
-        });
-
-      });
+        failureFlash: true
+    }));
 
     app.post('/signup', passport.authenticate('local-signup', {failureRedirect: '/login'}), function(req, res) {
       res.redirect('/');
