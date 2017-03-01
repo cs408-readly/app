@@ -48,7 +48,7 @@ function sendArticles(res, db_articles) {
     res.send({articles: db_articles}).status(200);
 }
 
-module.exports = function(app) {
+module.exports = function(app, passport) {
 
     app.get('/trending', function(req, res) {
 

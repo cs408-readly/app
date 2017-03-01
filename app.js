@@ -48,35 +48,9 @@ app.use(flash());
 
 require('./routes/auth.js')(app, passport);
 require('./routes/trending.js')(app);
+require('./routes/vote.js')(app);
 
-var User = require('./models/user.js');
-var Article = require('./models/article.js');
-app.post('/upvote', function(req, res) {
-
-    User.findOne({ _id: req.user._id }, function(err, user) {
-        user.local.sources[req.body.source] += 1;
-        user.save();
-    });
-
-    Article.findOne({ _id: req.body.article_id }, function(err, article) {
-        article.upvote += 1;
-        article.save();
-    });
-});
-
-app.post('/downvote', function(req, res) {
-
-    User.findOne({ _id: req.user._id }, function(err, user) {
-        user.local.sources[req.body.source] -= 1;
-        user.save();
-    });
-
-    Article.findOne({ _id: req.body.article_id }, function(err, article) {
-        article.upvote -= 1;
-        article.save();
-    });
-});
-
+// DO NOT MOVE THIS LINE UP TOP
 app.use(express.static('public'));
 module.exports = app.listen(port);
 

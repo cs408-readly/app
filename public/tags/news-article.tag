@@ -29,7 +29,12 @@
     }
 
     downvote() {
-        console.log('Downvoted article with id:' + this.opts.id);
+        var x = new XMLHttpRequest();
+        x.open('POST', '/downvote', true);
+        x.setRequestHeader("Content-Type", "application/json");
+        var send_data = { article_id: this.opts.id, source: this.opts.source };
+        console.log(send_data);
+        x.send(JSON.stringify(send_data));
     }
 
     comment() {
