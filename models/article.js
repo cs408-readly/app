@@ -8,5 +8,4 @@ var articleSchema = new Schema({
     url:        String,
     source:     String
 });
-
 module.exports = mongoose.model('Article', articleSchema);
