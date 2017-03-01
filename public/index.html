@@ -67,7 +67,7 @@
 
                 var tag = document.createElement('news-article');
                 li.appendChild(tag)
-                    riot.mount(tag, 'news-article', {message: article.title, id: 1, link: article.url, content: article.description});
+                    riot.mount(tag, 'news-article', {message: article.title, id: article._id, link: article.url, content: article.description});
             });
 
         }

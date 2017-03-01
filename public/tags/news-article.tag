@@ -10,9 +10,37 @@
         <button id="downvote" type="button" onclick={downvote}>Downvote</button>
         <button id="comment" type="button" onclick={comment}>Comment</button>
         <button id="favorite" type="button" onclick={favorite}>Favorite</button>
-        <input type="checkbox" onclick={save}>Save</input>
+        <!-- <input type="checkbox" onclick={save}>Save</input> */ -->
 
     </div>
+
+    <script>
+
+    goToNews() {
+        window.open(this.opts.link);
+    }
+
+    upvote() {
+        console.log('Upvoted article with id:' + this.opts.id);
+    }
+
+    downvote() {
+        console.log('Downvoted article with id:' + this.opts.id);
+    }
+
+    comment() {
+        console.log('Commented on  article with id:' + this.opts.id);
+    }
+
+    favorite() {
+        console.log('Favorited an article with id:'+this.opts.id);
+    }
+
+    save(){
+        console.log('article link to be saved for later: ' + this.opts.link);
+    }
+
+    </script>
 
     <style type="text/css">
 
@@ -87,33 +115,4 @@
         }
 
     </style>
-
-    <script>
-
-    goToNews() {
-        window.open(this.opts.link);
-    }
-
-    upvote() {
-        console.log('Upvoted article with id:' + this.opts.id);
-    }
-
-    downvote() {
-        console.log('Downvoted article with id:' + this.opts.id);
-    }
-
-    comment() {
-        console.log('Commented on  article with id:' + this.opts.id);
-    }
-    
-    favorite() {
-        console.log('Favorited an article with id:'+this.opts.id);
-    }
-
-    save(){
-        console.log('article link to be saved for later: ' + this.opts.link);
-    }
-
-    </script>
-
 </news-article>

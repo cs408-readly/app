@@ -22,7 +22,7 @@ module.exports = function(passport) {
 
         // asynchronous
         process.nextTick(function() {
-
+        console.log('test local signup');
         User.findOne({ 'local.email' :  email }, function(err, user) {
 
             if (err)
@@ -38,7 +38,19 @@ module.exports = function(passport) {
                 newUser.local.lastName = req.body.lastName;
                 newUser.local.email    = req.body.email;
                 newUser.local.password = newUser.generateHash(req.body.password);
-
+                //newUser.local.savedArticles = null;
+                newUser.local.sources = {
+                    engadget        : 0,
+                    time            : 0,
+                    fortune         : 0,
+                    bbc_news        : 0,
+                    bbc_sport       : 0,
+                    ign             : 0,
+                    recode          : 0,
+                    techcrunch      : 0,
+                    techradar       : 0,
+                    cnbc            : 0
+                };
                 newUser.save(function(err) {
                     if (err)
                         throw err;

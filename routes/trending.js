@@ -1,4 +1,5 @@
 var request = require('request');
+var Article = require('../models/article.js');
 
 function randomize( myArray ) {
 
@@ -17,20 +18,41 @@ function randomize( myArray ) {
 
 function saveArticles(my_articles, callback, res) {
 
-    // TODO write mongo article saving here
+    db_articles = [];
 
-    callback(res, my_articles);
+    var count = 0;
+    var length = my_articles.length;
+
+    my_articles.forEach(function(article) {
+
+        Article.findOne({ 'title': article.title }).then(function(db_article) {
+
+            count++;
+
+            if (db_article) {
+                db_articles.push(db_article)
+            } else {
+                new_article = new Article(article);
+                new_article.save();
+                db_articles.push(new_article);
+            }
+
+            if (count == length) {
+                callback(res, db_articles);
+            }
+        });
+    });
 }
 
-function sendArticles(res, my_articles) {
-    res.send({articles: my_articles}).status(200);
+function sendArticles(res, db_articles) {
+    res.send({articles: db_articles}).status(200);
 }
 
 module.exports = function(app) {
 
     app.get('/trending', function(req, res) {
 
-        var newsSources = ['abc-news-au', 'ars-technica', 'associated-press', 'bbc-news', 'bbc-sport', 'bild', 'bloomberg', 'business-insider', 'business-insider-uk', 'buzzfeed', 'cnbc', 'cnn', 'daily-mail', 'engadget', 'entertainment-weekly', 'espn', 'espn-cric-info', 'financial-times', 'focus', 'football-italia', 'fortune', 'four-four-two', 'fox-sports', 'ign', 'independent', 'mashable', 'metro', 'mirror', 'mtv-news', 'mtv-news-uk', 'national-geographic', 'new-scientist', 'newsweek', 'new-york-magazine', 'nfl-news', 'polygon', 'recode', 'reddit-r-all', 'reuters', 'sky-news', 'sky-sports-news', 'spiegel-online', 't3n', 'talksport', 'techcrunch', 'techradar', 'the-economist', 'the-guardian-au', 'the-guardian-uk', 'the-hindu', 'the-huffington-post', 'the-lad-bible', 'the-new-york-times', 'the-telegraph', 'the-times-of-india', 'the-verge', 'the-wall-street-journal', 'the-washington-post', 'time', 'usa-today', 'wired-de'];
+        var newsSources = ['engadget', 'time', 'fortune', 'bbc-news', 'bbc-sport', 'ign', 'recode', 'techcrunch', 'techradar', 'cnbc'];
         var my_articles = [];
 
         newsSources.forEach(function(newsSource) {
@@ -39,11 +61,11 @@ module.exports = function(app) {
             request.get(url, function(err, response, body) {
 
                 try {
-                JSON.parse(body).articles.forEach(function(article) {
+                    JSON.parse(body).articles.forEach(function(article) {
 
-                    article['source'] = newsSource;
-                    my_articles.push(article);
-                });
+                        article['source'] = newsSource;
+                        my_articles.push(article);
+                    });
                 } catch (e) {
                     console.log(newsSource);
                 }
@@ -56,5 +78,6 @@ module.exports = function(app) {
             });
         });
     });
-
 };
+        // REDUCED FOR TESTING PUT BACK AFTER DB IS UPDATED
+        // var newsSources = ['abc-news-au', 'ars-technica', 'associated-press', 'bbc-news', 'bbc-sport', 'bild', 'bloomberg', 'business-insider', 'business-insider-uk', 'buzzfeed', 'cnbc', 'cnn', 'daily-mail', 'engadget', 'entertainment-weekly', 'espn', 'espn-cric-info', 'financial-times', 'focus', 'football-italia', 'fortune', 'four-four-two', 'fox-sports', 'ign', 'independent', 'mashable', 'metro', 'mirror', 'mtv-news', 'mtv-news-uk', 'national-geographic', 'new-scientist', 'newsweek', 'new-york-magazine', 'nfl-news', 'polygon', 'recode', 'reddit-r-all', 'reuters', 'sky-news', 'sky-sports-news', 'spiegel-online', 't3n', 'talksport', 'techcrunch', 'techradar', 'the-economist', 'the-guardian-au', 'the-guardian-uk', 'the-hindu', 'the-huffington-post', 'the-lad-bible', 'the-new-york-times', 'the-telegraph', 'the-times-of-india', 'the-verge', 'the-wall-street-journal', 'the-washington-post', 'time', 'usa-today', 'wired-de'];
