@@ -34,8 +34,6 @@ app.use(cookieParser());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 
-app.use(express.static('public'));
-
 app.use(session({
     secret: 'secret',
     resave: true,
@@ -51,6 +49,7 @@ app.use(flash());
 require('./routes/auth.js')(app, passport);
 require('./routes/trending.js')(app);
 
+app.use(express.static('public'));
 module.exports = app.listen(port);
 
 
