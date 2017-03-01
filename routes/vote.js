@@ -15,6 +15,8 @@ module.exports = function(app) {
             article.upvote += 1;
             article.save();
         });
+
+        res.status(200).send();
     });
 
     app.post('/downvote', function(req, res) {
@@ -28,5 +30,7 @@ module.exports = function(app) {
             article.upvote -= 1;
             article.save();
         });
+
+        res.status(200).send();
     });
 };
