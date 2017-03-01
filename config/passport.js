@@ -38,7 +38,7 @@ module.exports = function(passport) {
                 newUser.local.lastName = req.body.lastName;
                 newUser.local.email    = req.body.email;
                 newUser.local.password = newUser.generateHash(req.body.password);
-                newUser.local.savedArticles = null;
+                //newUser.local.savedArticles = null;
                 newUser.local.sources = {
                     engadget        : 0,
                     time            : 0,
