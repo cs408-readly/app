@@ -1,5 +1,8 @@
 var LocalStrategy   = require('passport-local').Strategy;
+var FacebookStrategy = require('passport-facebook').Strategy;
 var User            = require('../models/user');
+
+var configAuth = require('./auth');
 
 module.exports = function(passport) {
 
@@ -12,6 +15,41 @@ module.exports = function(passport) {
             done(err, user);
         });
     });
+
+
+    passport.use(new FacebookStrategy({
+        clientID: configAuth.facebookAuth.clientID,
+        clientSecret: configAuth.facebookAuth.clientSecret,
+        callbackURL: configAuth.facebookAuth.callbackURL,
+        profileFields: ['id', 'emails', 'name']
+    },
+    function(token, refreshToken, profile, done) {
+        process.nextTick(function() {
+            User.findOne({ 'facebook.id ' : profile.id}, function(err, user) {
+                if(err)
+                    return done(err);
+                if(user) //user already authenticated return that user.
+                    return done(null, user);
+                else {
+                    //no user found create new user
+                    var newUser = new User();
+                    newUser.facebook.id = profile.id;
+                    newUser.facebook.token = token;
+                    newUser.facebook.name = profile.name.givenName + ' ' + profile.name.familyName;
+                    newUser.facebook.email = profile.emails[0].value;
+
+                    //save new user
+                    newUser.save(function(err) {
+                        if(err)
+                            throw err;
+                        //succesfully save user
+                        return done(null, newUser);
+                    });
+                }
+
+            });
+        });
+    }));
 
     passport.use('local-signup', new LocalStrategy({
         usernameField : 'email',

@@ -64,6 +64,8 @@
             <signup class="flexitem"></signup>
             <login class = "flexitem"></login>
         </div>
+
+        <a id ="facebook" href="/auth/facebook"> Login with Facebook </a>
     </div>
     <style type="text/css">
         #container {
@@ -86,7 +88,14 @@
             text-align: center;
             border: 1px solid #f1eff4;
             border-radius: 5px;
-
+            margin-bottom: 50px;
+        }
+        #facebook {
+            background-color: #3b5998;
+            padding: 10px 6px;
+            font-size: 16px;
+            color: white;
+            text-decoration: none;
         }
         input {
             width: 70%;
