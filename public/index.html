@@ -67,14 +67,22 @@
 
                 var tag = document.createElement('news-article');
                 li.appendChild(tag)
-                    riot.mount(tag, 'news-article', {message: article.title, id: article._id, link: article.url, content: article.description});
+                    riot.mount(tag, 'news-article', {
+                        message: article.title,
+                        id: article._id,
+                        link: article.url,
+                        content: article.description,
+                        source: article.source,
+                        upvotes: article.upvotes,
+                        downvotes: article.downvotes
+                    });
             });
 
         }
 
         function getNewsArticles() {
             var xmlHttp = new XMLHttpRequest();
-            xmlHttp.open("GET", "http://localhost:3000/trending", false);
+            xmlHttp.open("GET", "/trending", false);
             xmlHttp.send( null );
             return JSON.parse(xmlHttp.responseText).articles;
         }
