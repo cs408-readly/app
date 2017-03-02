@@ -9,7 +9,8 @@
         <button id="upvote" type="button" onclick={upvote}> Upvote</button>
         <button id="downvote" type="button" onclick={downvote}>Downvote</button>
         <button id="comment" type="button" onclick={comment}>Comment</button>
-        <button id="favorite" type="button" onclick={favorite}>Favorite</button>
+        <button id="favorite" type="button" value={this.opts.id} onclick={favorite}>Favorite</button>
+        <!-- <input type="checkbox" onclick={save}>Save</input> */ -->
 
     </div>
 
@@ -42,7 +43,13 @@
     }
 
     favorite() {
-        console.log('Favorited an article with id:'+this.opts.id);
+        var req = new XMLHttpRequest();
+        req.open('POST', '/favorites', true);
+        req.setRequestHeader("Content-Type", "application/json");
+        var send_data = { article_id: this.opts.id };
+        console.log(send_data);
+        req.send(JSON.stringify(send_data));
+        console.log('Saved article with id:' + this.opts.id);
     }
 
     save(){

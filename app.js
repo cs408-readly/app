@@ -49,6 +49,7 @@ app.use(flash());
 require('./routes/auth.js')(app, passport);
 require('./routes/trending.js')(app);
 require('./routes/vote.js')(app);
+require('./routes/favorites.js')(app);
 
 // DO NOT MOVE THIS LINE UP TOP
 app.use(express.static('public'));
