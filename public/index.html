@@ -56,7 +56,6 @@
             <button type="button" onclick="getNews()">Get more news!</button>
         </div>
 
-
         <style type="text/css">
 
             #container {
@@ -111,6 +110,10 @@
         }
 
         getNews();
-        </script>
+        function settings() {
+          console.log('Settings button pressed');
+          window.open('/settings.html')
+        }
+      </script>
     </body>
 </html>
