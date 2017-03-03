@@ -6,13 +6,26 @@ module.exports = function(app) {
 
     app.post('/upvote', function(req, res) {
 
+        var upvoteStatus = req.body.upvoteStatus;
         User.findOne({ _id: req.user._id }, function(err, user) {
-            user.local.sources[req.body.source] += 1;
+
+            if (upvoteStatus == true) {
+                user.local.sources[req.body.source] += 1;
+            } else {
+                user.local.sources[req.body.source] -= 1;
+            }
+
             user.save();
         });
 
         Article.findOne({ _id: req.body.article_id }, function(err, article) {
-            article.upvote += 1;
+
+            if (upvoteStatus == true) {
+                article.upvote += 1;
+            } else {
+                article.upvote -= 1;
+            }
+
             article.save();
         });
 
@@ -21,13 +34,26 @@ module.exports = function(app) {
 
     app.post('/downvote', function(req, res) {
 
+        var downvoteStatus = req.body.downvoteStatus;
         User.findOne({ _id: req.user._id }, function(err, user) {
-            user.local.sources[req.body.source] -= 1;
+
+            if (downvoteStatus == true) {
+                user.local.sources[req.body.source] += 1;
+            } else {
+                user.local.sources[req.body.source] -= 1;
+            }
+
             user.save();
         });
 
         Article.findOne({ _id: req.body.article_id }, function(err, article) {
-            article.upvote -= 1;
+
+            if (downvoteStatus == true) {
+                article.downvote += 1;
+            } else {
+                article.downvote -= 1;
+            }
+
             article.save();
         });
 

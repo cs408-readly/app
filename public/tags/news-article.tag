@@ -1,40 +1,94 @@
 <news-article>
 
+
     <div id="post">
 
         <h5 onclick={goToNews}><b>{opts.message}</b></h5>
 
         <p onclick={goToNews}>{opts.content}</p>
 
-        <button id="upvote" type="button" onclick={upvote}> Upvote</button>
-        <button id="downvote" type="button" onclick={downvote}>Downvote</button>
+        <button id="upvote" type="button" onclick={upvote}>{opts.upvotes}</button>
+        <button id="downvote" type="button" onclick={downvote}>{opts.downvotes}</button>
         <button id="comment" type="button" onclick={comment}>Comment</button>
-        <button id="favorite" type="button" onclick={favorite}>Favorite</button>
+        <button id="favorite" type="button" value={this.opts.id} onclick={favorite}>Favorite</button>
+        <!-- <input type="checkbox" onclick={save}>Save</input> */ -->
+        <button id="share" type="button"onClick={share}>Share</button>
 
     </div>
 
     <script>
 
+    share() {
+        FB.ui({
+          method: 'share',
+          href: this.opts.link,
+        }, function(response){});
+    }
     goToNews() {
         window.open(this.opts.link);
     }
 
-    upvote() {
+    var article = this.opts;
+
+    var upvoteStatus = false;
+    var upvoteFunc = function(e) {
+
+        upvoteStatus = !upvoteStatus;
+
+        var send_data = {
+            article_id: article.id,
+            source: article.source,
+            upvoteStatus: upvoteStatus
+        };
+
         var x = new XMLHttpRequest();
         x.open('POST', '/upvote', true);
         x.setRequestHeader("Content-Type", "application/json");
-        var send_data = { article_id: this.opts.id, source: this.opts.source };
-        console.log(send_data);
         x.send(JSON.stringify(send_data));
+
+        if (upvoteStatus == true) {
+            article.upvotes += 1;
+            if (downvoteStatus == true) {
+                downvoteFunc();
+            }
+        } else {
+            article.upvotes -= 1;
+        }
     }
 
-    downvote() {
+    upvote() {
+        return upvoteFunc();
+    }
+
+    var downvoteFunc = function(e) {
+
+        downvoteStatus = !downvoteStatus;
+
+        var send_data = {
+            article_id: article.id,
+            source: article.source,
+            downvoteStatus: downvoteStatus
+        };
+
         var x = new XMLHttpRequest();
         x.open('POST', '/downvote', true);
         x.setRequestHeader("Content-Type", "application/json");
-        var send_data = { article_id: this.opts.id, source: this.opts.source };
-        console.log(send_data);
         x.send(JSON.stringify(send_data));
+
+        if (downvoteStatus == true) {
+            article.downvotes += 1;
+            if (upvoteStatus == true) {
+                upvoteFunc();
+            }
+        } else {
+            article.downvotes -= 1;
+        }
+    }
+
+    var downvoteStatus = false;
+
+    downvote() {
+        return downvoteFunc();
     }
 
     comment() {
@@ -42,7 +96,13 @@
     }
 
     favorite() {
-        console.log('Favorited an article with id:'+this.opts.id);
+        var req = new XMLHttpRequest();
+        req.open('POST', '/favorites', true);
+        req.setRequestHeader("Content-Type", "application/json");
+        var send_data = { article_id: this.opts.id };
+        console.log(send_data);
+        req.send(JSON.stringify(send_data));
+        console.log('Saved article with id:' + this.opts.id);
     }
 
     save(){
@@ -52,6 +112,30 @@
     </script>
 
     <style type="text/css">
+
+        a {
+            background: #4CAF50;
+            border: none;
+            color: white;
+            padding: 8px 16px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font: 16px;
+            border-radius: 10px;
+        }
+
+        a.down {
+            background: white;
+            border: none;
+            color: #4CAF50;
+            padding: 8px 16px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font: 16px;
+            border-radius: 10px;
+        }
 
         h5,p {
             text-align: left;
@@ -87,10 +171,35 @@
             border-radius: 10px;
         }
 
+        #upvoted {
+            background-color: white;
+            border: none;
+            color: #4CAF50;
+            padding: 8px 16px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font: 16px;
+            border-radius: 10px;
+        }
+
         #downvote {
             background-color: #f44336;
             border: none;
             color: white;
+            padding: 8px 16px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font: 16px;
+            border-radius: 10px;
+
+        }
+
+        #downvoted {
+            background-color: white;
+            border: none;
+            color: #f44336;
             padding: 8px 16px;
             text-align: center;
             text-decoration: none;
