@@ -1,6 +1,6 @@
 <header>
     <h3 id="title">Readly</h3>
-    <button id="settings" class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab">
+    <button id="settings" class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab" onclick = "settings()">
         <i class="material-icons">add</i>
     </button>
 
@@ -30,9 +30,4 @@
         }
     </style>
 
-    <script>
-    settings() {
-        console.log('Settings button pressed');
-    }
-    </script>
 </header>

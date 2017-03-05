@@ -12,10 +12,18 @@
         <button id="comment" type="button" onclick={comment}>Comment</button>
         <button id="favorite" type="button" value={this.opts.id} onclick={favorite}>Favorite</button>
         <!-- <input type="checkbox" onclick={save}>Save</input> */ -->
+        <button id="share" type="button"onClick={share}>Share</button>
 
     </div>
 
     <script>
+
+    share() {
+        FB.ui({
+          method: 'share',
+          href: this.opts.link,
+        }, function(response){});
+    }
     goToNews() {
         window.open(this.opts.link);
     }

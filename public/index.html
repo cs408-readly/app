@@ -20,9 +20,31 @@
         <script src="./dist/header.js"></script>
         <script src="./dist/sidebar.js"></script>
 
+        <!-- Facebook meta Tags -->
+        <meta property="og:type"               content="article" />
+        <meta property="og:title"              content="Readly" />
+        <meta property="og:description"        content="News tailered for you." />
     </head>
 
     <body>
+        <script>
+          window.fbAsyncInit = function() {
+            FB.init({
+              appId      : '412182572470320',
+              xfbml      : true,
+              version    : 'v2.8'
+            });
+            FB.AppEvents.logPageView();
+          };
+
+          (function(d, s, id){
+             var js, fjs = d.getElementsByTagName(s)[0];
+             if (d.getElementById(id)) {return;}
+             js = d.createElement(s); js.id = id;
+             js.src = "//connect.facebook.net/en_US/sdk.js";
+             fjs.parentNode.insertBefore(js, fjs);
+           }(document, 'script', 'facebook-jssdk'));
+        </script>
 
         <header></header>
 
@@ -33,7 +55,6 @@
 
             <button type="button" onclick="getNews()">Get more news!</button>
         </div>
-
 
         <style type="text/css">
 
@@ -89,6 +110,10 @@
         }
 
         getNews();
-        </script>
+        function settings() {
+          console.log('Settings button pressed');
+          window.open('/settings.html')
+        }
+      </script>
     </body>
 </html>
