@@ -46,6 +46,7 @@
             var x = new XMLHttpRequest()
 
             x.open('POST', '/settings', true);
+            x.setRequestHeader("Content-Type", "application/json");
             x.readyonstatechange = function() {
                 window.location.href = '/';
             }
