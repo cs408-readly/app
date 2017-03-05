@@ -12,7 +12,7 @@ describe('Trending functionality', function(){
 
     it('returns valid JSON', function(done) {
         chai.request(server)
-            .get('/trending')
+            .post('/trending')
             .end(function(err, res) {
                 JSON.parse(res.text).should.be.a('object');
                 done();
@@ -21,7 +21,7 @@ describe('Trending functionality', function(){
 
     it('has articles array', function(done) {
         chai.request(server)
-            .get('/trending')
+            .post('/trending')
             .end(function(err, res) {
                 var body = JSON.parse(res.text);
 
@@ -33,7 +33,7 @@ describe('Trending functionality', function(){
 
     it('should contain valid articles', function(done) {
         chai.request(server)
-            .get('/trending')
+            .post('/trending')
             .end(function(err, res) {
                 var array = JSON.parse(res.text).articles;
 

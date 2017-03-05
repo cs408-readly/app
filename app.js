@@ -18,7 +18,7 @@ var mysql       = require('mysql');
 var Sequelize   = require('sequelize');
 var sequelize   = new Sequelize('mysql://sql9156962:7iPcSpiILT@sql9.freemysqlhosting.net:3306/sql9156962');
 
-// only for mongodb 
+// only for mongodb
 var mongoose = require('mongoose');
 var configDB = require('./config/database.js');
 mongoose.connect(configDB.url);
@@ -50,6 +50,7 @@ require('./routes/auth.js')(app, passport);
 require('./routes/trending.js')(app);
 require('./routes/vote.js')(app);
 require('./routes/favorites.js')(app);
+require('./routes/recommend.js')(app);
 
 // DO NOT MOVE THIS LINE UP TOP
 app.use(express.static('public'));
