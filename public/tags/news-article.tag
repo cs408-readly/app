@@ -101,7 +101,6 @@
         req.setRequestHeader("Content-Type", "application/json");
         var send_data = { article_id: this.opts.id };
         console.log(send_data);
-        //req.send(send_data);
         req.send(JSON.stringify(send_data));
         console.log('Saved article with id:' + this.opts.id);
     }
