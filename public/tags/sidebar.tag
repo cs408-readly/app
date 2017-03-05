@@ -3,10 +3,6 @@
     <p id="title"></b>News Sources</b><p>
 
     <ul id="news-list">
-        <li>Techcruch</li>
-        <li>Techcruch</li>
-        <li>Techcruch</li>
-        <li>Techcruch</li>
     </ul>
 
     <style>
@@ -35,5 +31,41 @@
         }
 
     </style>
+
+    <script>
+    var x = new XMLHttpRequest();
+    x.onreadystatechange = function() {
+        if (x.readyState == 4 && x.status == 200) {
+            console.log(x.responseText);
+            renderRecommendations(JSON.parse(x.responseText));
+        }
+    }
+    x.open( "POST", '/recommend', true );
+    x.send();
+
+    var self = this;
+    var updateArticles = function(source) {
+        self.opts.observable.trigger('source-select', source);
+    }
+
+    var renderRecommendations = function(sources) {
+
+        sources.forEach(function(source) {
+
+            var list = document.getElementById('news-list');
+            var li = document.createElement('li');
+
+            (function(value){
+                li.addEventListener("click", function() {
+                    updateArticles(source);
+                }, false);
+            })(source);
+            li.appendChild(document.createTextNode(source));
+            list.append(li);
+
+        });
+    }
+
+    </script>
 
 </sidebar>

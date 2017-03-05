@@ -29,7 +29,7 @@ describe('Basic functionality', function() {
 
     it('responds to /trending', function(done) {
         chai.request(server)
-            .get('/trending')
+            .post('/trending')
             .end(function(err, res) {
                 res.should.have.status(200);
                 done();
