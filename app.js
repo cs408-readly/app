@@ -12,18 +12,11 @@ var request             = require('request');
 
 var port = (process.env.NODE_ENV === 'test') ? 3001 : (process.env.PORT || 3000);
 
-
-// remove if not using mysql. If just sql add sql db setup statement
-var mysql       = require('mysql');
-var Sequelize   = require('sequelize');
-var sequelize   = new Sequelize('mysql://sql9156962:7iPcSpiILT@sql9.freemysqlhosting.net:3306/sql9156962');
-
 // only for mongodb
 var mongoose = require('mongoose');
 var configDB = require('./config/database.js');
 mongoose.connect(configDB.url);
-app.engine('html', require('ejs').renderFile);
-app.set('view engine', 'ejs'); //remove this later. just for login testing purpose
+
 
 require('./config/passport')(passport);
 
