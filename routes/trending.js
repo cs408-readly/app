@@ -56,23 +56,10 @@ module.exports = function(app, passport) {
 
         if (source) {
 
-            var url = 'https://newsapi.org/v1/articles?source='+source+'&sortBy=top&apiKey=e30f46dbdaa645558d009af5b0ede4ca';
-            var my_articles = [];
+            source = source.replace(/_/g, "-");
+            Article.find({source: source}, function(err, articles) {
 
-            request.get(url, function(err, response, body) {
-
-                try {
-                    JSON.parse(body).articles.forEach(function(article) {
-
-                        article['source'] = source;
-                        my_articles.push(article);
-                    });
-                } catch (e) {
-                    console.log(source);
-                }
-
-                randomize(my_articles);
-                saveArticles(my_articles, sendArticles, res);
+                res.send({articles: articles});
             });
         } else {
 
