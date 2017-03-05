@@ -51,6 +51,8 @@ require('./routes/trending.js')(app);
 require('./routes/vote.js')(app);
 require('./routes/favorites.js')(app);
 require('./routes/recommend.js')(app);
+require('./routes/settings.js')(app);
+require('./routes/user.js')(app);
 
 // DO NOT MOVE THIS LINE UP TOP
 app.use(express.static('public'));

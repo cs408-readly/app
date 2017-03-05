@@ -2,10 +2,10 @@
 <h1>Settings</h1>
 
 
-    First name: <input type="text" id = "first" value={this.opts.user.firstName}><br>
-    Last name: <input type="text" id = "last" value={this.opts.user.lastName}><br>
-    email: <input type="text" id = "email" value={this.opts.user.email}><br>
-    Password: <input type="password" id="password" value={this.opts.user.password}><br>
+    First name: <input type="text" id = "first" value={this.opts.user.local.firstName}><br>
+    Last name: <input type="text" id = "last" value={this.opts.user.local.lastName}><br>
+    email: <input type="text" id = "email" value={this.opts.user.local.email}><br>
+    Password: <input type="password" id="password"><br>
 
     <button id="submit" type="button" onclick={submit}>Submit changes</button>
 
@@ -33,12 +33,9 @@
 
         var user = this.opts.user
 
-        console.log(newUser);
-        console.log(user);
-
         var oldUser = JSON.stringify(user);
-        var newUser = JSON.stringify(newUser);
-        if(oldUser === newUser) {
+        var newUserString = JSON.stringify(newUser);
+        if(oldUser === newUserString) {
             console.log("no changes have been made");
         }
         else {
@@ -47,10 +44,8 @@
 
             x.open('POST', '/settings', true);
             x.setRequestHeader("Content-Type", "application/json");
-            x.readyonstatechange = function() {
-                window.location.href = '/';
-            }
-            x.send({ user: newUser });
+            x.send(JSON.stringify({ user: newUser }));
+            window.location.href = '/';
         }
     }
     </script>

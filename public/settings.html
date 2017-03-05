@@ -10,13 +10,15 @@
 
         <script type="text/javascript">
 
+        var x = new XMLHttpRequest();
+
+        x.open('GET', '/user', false);
+        x.send();
+
+        var user = JSON.parse(x.responseText);
+
         riot.mount('*', {
-            user: {
-                firstName: 'Sidhant',
-                lastName: 'Chitkara',
-                email: 'sid@gmail.com',
-                password: 'abcd'
-            }
+            user: user
         });
         </script>
     </body>
