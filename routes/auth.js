@@ -21,10 +21,6 @@ module.exports = function(app, passport) {
       res.redirect('/');
     });
 
-    app.get('/signup', function(req, res) {
-        res.render('signup.ejs', { message: req.flash('signupMessage') });
-    });
-
     app.get('/auth/facebook', passport.authenticate('facebook', {scope: 'email'}));
 
     app.get('/auth/facebook/callback',

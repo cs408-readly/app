@@ -18,15 +18,6 @@ describe('Basic functionality', function() {
             });
     });
 
-    it('responds to /signup', function(done) {
-        chai.request(server)
-            .get('/signup')
-            .end(function(err, res) {
-                res.should.have.status(200);
-                done();
-            });
-    });
-
     it('responds to /trending', function(done) {
         chai.request(server)
             .post('/trending')
