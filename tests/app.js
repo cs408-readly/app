@@ -34,7 +34,7 @@ describe('Basic functionality', function() {
                 res.should.have.status(200);
                 done();
             });
-    });
+    }).timeout(5000);
 });
 
 require('./trending.test.js');
