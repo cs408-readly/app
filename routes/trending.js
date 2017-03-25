@@ -64,13 +64,9 @@ module.exports = function(app, passport) {
         } else {
 
             var newsSources = [ 'associated-press', 'bbc-news', 'bbc-sport',
-                'bloomberg', 'business-insider', 'buzzfeed', 'cnbc', 'cnn',
                 'daily-mail', 'engadget', 'entertainment-weekly', 'espn', 'financial-times',
-                'fortune', 'four-four-two', 'fox-sports', 'ign', 'independent',
                 'mashable', 'national-geographic', 'new-scientist',
-                'polygon', 'recode', 'reuters',
                 'techcrunch', 'techradar', 'the-economist',
-                'the-guardian-uk', 'the-huffington-post', 'the-lad-bible', 'the-new-york-times',
                 'the-telegraph', 'the-verge', 'the-wall-street-journal', 'the-washington-post',
                 'time', 'usa-today'];
             var my_articles = [];

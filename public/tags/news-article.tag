@@ -61,7 +61,7 @@
         if (upvoteStatus == true) {
             article.upvotes += 1;
             if (downvoteStatus == true) {
-                downvoteFunc();
+                /* downvoteFunc(); */
             }
         } else {
             article.upvotes -= 1;
@@ -88,7 +88,7 @@
         if (downvoteStatus == true) {
             article.downvotes += 1;
             if (upvoteStatus == true) {
-                upvoteFunc();
+                /* upvoteFunc(); */
             }
         } else {
             article.downvotes -= 1;
@@ -102,6 +102,7 @@
     }
 
     favorite() {
+        window.open('/favorites.html');
         var req = new XMLHttpRequest();
         req.open('POST', '/favorites', true);
         req.setRequestHeader("Content-Type", "application/json");
