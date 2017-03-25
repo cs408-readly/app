@@ -38,12 +38,12 @@ function saveArticles(my_articles, callback, res) {
             }
 
             if (count == length) {
-                // callback(res, db_articles);
+                callback(res, db_articles);
             }
         });
     });
 
-    callback(res, db_articles);
+    // callback(res, db_articles);
 }
 
 function sendArticles(res, db_articles) {
