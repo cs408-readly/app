@@ -11,7 +11,8 @@ module.exports = function(app) {
         console.log(string);
         request.post({url: recommendationUrl, form: {user_id: string}}, function(err, response, body) {
             console.log(body);
-            res.send(body).status(200);
+            res.send().status(200);
+            // res.send(body).status(200);
         });
     });
 

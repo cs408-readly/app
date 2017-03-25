@@ -57,7 +57,8 @@
     }
 
     upvote() {
-        return upvoteFunc();
+        return downvoteFunc();
+        /* return upvoteFunc(); */
     }
 
     var downvoteFunc = function(e) {
