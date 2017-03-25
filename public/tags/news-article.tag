@@ -1,21 +1,19 @@
 <news-article>
 
-
+<div id="article">
     <div id="post">
 
         <h5 onclick={goToNews}><b>{opts.message}</b></h5>
-
         <p onclick={goToNews}>{opts.content}</p>
-
         <button id="upvote" type="button" onclick={upvote}>{opts.upvotes}</button>
         <button id="downvote" type="button" onclick={downvote}>{opts.downvotes}</button>
         <button id="comment" type="button" onclick={comment}>Comment</button>
         <button id="favorite" type="button" value={this.opts.id} onclick={favorite}>Favorite</button>
         <!-- <input type="checkbox" onclick={save}>Save</input> */ -->
         <button id="share" type="button"onClick={share}>Share</button>
-
     </div>
-
+    </div>
+</div>
     <script>
 
     share() {
@@ -24,9 +22,23 @@
           href: this.opts.link,
         }, function(response){});
     }
+
     goToNews() {
         window.open(this.opts.link);
     }
+
+    function CommentStore() {
+        riot.observable(this) // Riot provides our event emitter.
+    }
+    riot.commentStore = new CommentStore();
+
+    comment() {
+
+        console.log('Commented on  article with id:' + this.opts.id);
+        var str = '/comment.html#' + this.opts.id;
+        window.open(str);
+    }
+
 
     var article = this.opts;
 
@@ -61,9 +73,7 @@
     }
 
     var downvoteFunc = function(e) {
-
         downvoteStatus = !downvoteStatus;
-
         var send_data = {
             article_id: article.id,
             source: article.source,
@@ -89,10 +99,6 @@
 
     downvote() {
         return downvoteFunc();
-    }
-
-    comment() {
-        console.log('Commented on  article with id:' + this.opts.id);
     }
 
     favorite() {

@@ -14,11 +14,12 @@
 
         <!-- Riot import -->
         <script src="https://cdn.jsdelivr.net/riot/3.1/riot.min.js"></script>
-
+        
         <!-- Riot tags import -->
         <script src="./dist/news-article.js"></script>
         <script src="./dist/header.js"></script>
         <script src="./dist/sidebar.js"></script>
+        <script src="./dist/todo.js"></script>
 
         <!-- Facebook meta Tags -->
         <meta property="og:type"               content="article" />
@@ -47,6 +48,8 @@
         </script>
 
         <header></header>
+
+
 
 
         <div id=container>
@@ -101,7 +104,6 @@
         };
 
         function showNews(articles) {
-
             articles.forEach(function(article) {
                 var li = document.createElement('li');
                 list.append(li);
@@ -120,9 +122,7 @@
                     observable: sharedObservable
                 });
             });
-
         }
-
         function getNewsArticles(source) {
             var send_data = {
                 source: source,
