@@ -3,9 +3,9 @@
 
 
     First name: <input type="text" id = "first" value={this.opts.user.local.firstName}><br>
-    Last name: <input type="text" id = "last" value={this.opts.user.local.lastName}><br>
+    Last name: <input type="text" id = "last" value={this.opts.user.local.firstName}><br>
     email: <input type="text" id = "email" value={this.opts.user.local.email}><br>
-    Password: <input type="password" id="password"><br>
+    Password: <input type="text" id="password" value= "password"><br>
 
     <button id="submit" type="button" onclick={submit}>Submit changes</button>
 
@@ -25,13 +25,18 @@
             email: email,
             password: pass
         }
+        
+        alert("cannot pass empty field");
+
+
 
         var user = this.opts.user
 
         var oldUser = JSON.stringify(user);
         var newUserString = JSON.stringify(newUser);
+       
         if(oldUser === newUserString) {
-            console.log("no changes have been made");
+            alert("no changes have been made");
         }
         else {
             //console.log(password);
@@ -40,7 +45,8 @@
             x.open('POST', '/settings', true);
             x.setRequestHeader("Content-Type", "application/json");
             x.send(JSON.stringify({ user: newUser }));
-            window.location.href = '/';
+            console.log(x.responseText);
+            //window.location.href = '/';
         }
     }
     </script>
