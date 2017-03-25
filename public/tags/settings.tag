@@ -18,11 +18,6 @@
         var email = document.getElementById("email").value;
         var pass = document.getElementById("password").value;
 
-        if((first === "")||(last === "")||(email === "")||(pass === "")) {
-
-            alert("field cannot be empty");
-            return;
-        }
 
         var newUser = {
             firstName: first,
@@ -39,7 +34,7 @@
             console.log("no changes have been made");
         }
         else {
-            console.log(password);
+            //console.log(password);
             var x = new XMLHttpRequest()
 
             x.open('POST', '/settings', true);
