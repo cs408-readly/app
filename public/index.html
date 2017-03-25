@@ -103,6 +103,7 @@
         function showNews(articles) {
 
             articles.forEach(function(article) {
+
                 var li = document.createElement('li');
                 list.append(li);
 
@@ -111,7 +112,7 @@
 
                 riot.mount(tag, 'news-article', {
                     message: article.title,
-                    id: 1,
+                    id: article._id,
                     link: article.url,
                     content: article.description,
                     source: article.source,
@@ -120,12 +121,12 @@
                     observable: sharedObservable
                 });
             });
-
         }
 
         function getNewsArticles(source) {
+
             var send_data = {
-                source: source,
+                source: "",
             };
 
             var x = new XMLHttpRequest();
