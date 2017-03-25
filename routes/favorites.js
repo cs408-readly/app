@@ -36,13 +36,13 @@ module.exports = function(app) {
 
         User.findOne({ _id: req.user._id }, function(err, user) {
             Article.findOne({ _id: req.body.article_id }, function(err, article) {
-                var x = user.local.savedArticles.indexOf(article._id);
-                console.log(x);
+                //var x = user.local.savedArticles.indexOf(article._id);
+                //console.log(x);
                 console.log(article.title);
-                if (x == -1) {
+                //if (x == -1) {
                     user.local.savedArticles.push(article) ;
                     user.save();
-                }
+                //}
             });
         });
     });
