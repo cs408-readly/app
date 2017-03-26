@@ -60,7 +60,6 @@ module.exports = function(passport) {
 
         // asynchronous
         process.nextTick(function() {
-        console.log('test local signup');
         User.findOne({ 'local.email' :  email }, function(err, user) {
 
             if (err)

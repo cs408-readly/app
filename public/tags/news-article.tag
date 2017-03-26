@@ -19,7 +19,7 @@
     share() {
         FB.ui({
           method: 'share',
-          href: this.opts.link,
+          href: 'http://google.com',
         }, function(response){});
     }
 
@@ -35,7 +35,7 @@
     comment() {
 
         console.log('Commented on  article with id:' + this.opts.id);
-        var str = '/comment.html#' + this.opts.id;
+        var str = '/comment.html';
         window.open(str);
     }
 
