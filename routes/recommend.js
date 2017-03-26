@@ -1,5 +1,5 @@
 var request = require('request');
-var recommendationUrl = 'https://infinite-mesa-76618.herokuapp.com/';
+var recommendationUrl = 'https://infinite-mesa-76618.herokuapp.com/recommend';
 
 module.exports = function(app) {
 
