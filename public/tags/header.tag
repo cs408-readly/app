@@ -1,7 +1,7 @@
 <header>
     <h3 id="title">Readly</h3>
-    <button id="settings" class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab" onclick = "settings()">
-        <i class="material-icons">add</i>
+    <button id="settings" class="mdl-button mdl-js-button mdl-button--icon" onclick = "settings()">
+        <i class="material-icons">more_vert</i>
     </button>
 
     <style type="text/css">
