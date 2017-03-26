@@ -60,7 +60,6 @@ module.exports = function(passport) {
 
         // asynchronous
         process.nextTick(function() {
-        console.log('test local signup');
         User.findOne({ 'local.email' :  email }, function(err, user) {
 
             if (err)
@@ -72,9 +71,24 @@ module.exports = function(passport) {
 
                 var newUser = new User();
 
+                if(req.body.firstName == "" || req.body.lastName == "" || req.body.email == ""|| req.body.password == "") {
+                    return done(err);
+                }
+                if((req.body.email.indexOf("@") < 0)) {
+                    //invalid email address
+                    return done(err);
+                }
+                var passlength = req.body.password.length;
+
+                //if password is between 5 and 16
+                if(!(passlength > 5 && passlength < 16)) {
+                    return done(err);
+                }
+                
                 newUser.local.firstName = req.body.firstName;
                 newUser.local.lastName = req.body.lastName;
                 newUser.local.email    = req.body.email;
+
                 newUser.local.password = newUser.generateHash(req.body.password);
                 //newUser.local.savedArticles = null;
                 newUser.local.sources = {
