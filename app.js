@@ -17,6 +17,7 @@ var mongoose = require('mongoose');
 var configDB = require('./config/database.js');
 mongoose.connect(configDB.url);
 
+process.env.PWD = process.cwd();
 
 require('./config/passport')(passport);
 
@@ -48,7 +49,8 @@ require('./routes/settings.js')(app);
 require('./routes/user.js')(app);
 
 // DO NOT MOVE THIS LINE UP TOP
-app.use(express.static('public'));
+
+app.use(express.static(process.env.PWD+'/public'));
 module.exports = app.listen(port);
 
 

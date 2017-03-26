@@ -3,12 +3,12 @@ var path = require('path');
 module.exports = function(app, passport) {
 
     app.get('/', isLoggedIn, function(req, res) {
-        res.sendFile(path.join(__dirname+'/../public/index.html'));
+
+        res.sendFile(path.resolve(process.env.PWD, 'public', 'index.html'));
     });
 
     app.get('/login', function(req, res) {
-
-        res.sendFile(path.join(__dirname+'/../public/login.html'));
+        res.sendFile(path.resolve(process.env.PWD, 'public', 'login.html'));
     });
 
     app.post('/login', passport.authenticate('local-login', {
