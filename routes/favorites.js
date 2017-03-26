@@ -1,9 +1,11 @@
 var User = require('../models/user.js');
 var Article = require('../models/article.js');
+var isLoggedIn = require('./isLoggedIn.js');
+
 var path = require('path');
 module.exports = function(app) {
 
-    app.get('/favorites', function(req, res, callback){
+    app.get('/favorites', isLoggedIn, function(req, res, callback){
         User.findOne({_id: req.user._id}, function(err, user) {
             var fav_articles = user.local.savedArticles;
             var expanded_articles = [];
