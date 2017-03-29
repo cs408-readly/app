@@ -44,7 +44,7 @@ riot.tag2('news-article', '<div id="article"> <div id="post"> <h5 onclick="{goTo
         if (upvoteStatus == true) {
             article.upvotes += 1;
             if (downvoteStatus == true) {
-
+                downvoteFunc();
             }
         } else {
             article.upvotes -= 1;
@@ -71,7 +71,7 @@ riot.tag2('news-article', '<div id="article"> <div id="post"> <h5 onclick="{goTo
         if (downvoteStatus == true) {
             article.downvotes += 1;
             if (upvoteStatus == true) {
-
+                upvoteFunc();
             }
         } else {
             article.downvotes -= 1;
@@ -85,7 +85,7 @@ riot.tag2('news-article', '<div id="article"> <div id="post"> <h5 onclick="{goTo
     }.bind(this)
 
     this.favorite = function() {
-        window.open('/favorites.html');
+
         var req = new XMLHttpRequest();
         req.open('POST', '/favorites', true);
         req.setRequestHeader("Content-Type", "application/json");

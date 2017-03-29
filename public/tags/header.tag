@@ -20,6 +20,8 @@
         #settings {
             display: inline;
             float: right;
+            margin-right: 20px;
+            margin-top: 4px;
         }
         #settings:hover {
             background-color: white;
