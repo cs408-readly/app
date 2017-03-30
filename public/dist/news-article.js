@@ -27,7 +27,6 @@ riot.tag2('news-article', '<div id="article"> <div id="post"> <h5 onclick="{goTo
 
     var upvoteStatus = false;
     var upvoteFunc = function(e) {
-
         upvoteStatus = !upvoteStatus;
 
         var send_data = {
@@ -85,7 +84,7 @@ riot.tag2('news-article', '<div id="article"> <div id="post"> <h5 onclick="{goTo
     }.bind(this)
 
     this.favorite = function() {
-
+        window.open('/favorites.html');
         var req = new XMLHttpRequest();
         req.open('POST', '/favorites', true);
         req.setRequestHeader("Content-Type", "application/json");
