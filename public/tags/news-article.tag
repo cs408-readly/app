@@ -44,7 +44,6 @@
 
     var upvoteStatus = false;
     var upvoteFunc = function(e) {
-
         upvoteStatus = !upvoteStatus;
 
         var send_data = {
@@ -102,7 +101,7 @@
     }
 
     favorite() {
-    
+        window.open('/favorites.html');
         var req = new XMLHttpRequest();
         req.open('POST', '/favorites', true);
         req.setRequestHeader("Content-Type", "application/json");
